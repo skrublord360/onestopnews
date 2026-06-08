@@ -1,190 +1,113 @@
-# OneStopNews Private Repository
+# OneStopNews
 
-This is the private working repository for OneStopNews.
+**Everything important, sorted by topic.**
 
-It contains the actual application code that powers the live site, including the backend, frontend, source ingestion, category rules, ranking behavior, summary logic, and development cache.
+Visit the live site: https://onestopnews.onrender.com/
 
-Live site: https://onestopnews.onrender.com/
+![OneStopNews desktop screenshot](assets/screenshots/desktop-home.png)
 
----
+OneStopNews is a simple way to scan the news without jumping between every publisher, finance page, forum, and entertainment site.
 
-## What This Repo Is For
-
-Use this repo for building, running, fixing, and deploying OneStopNews.
-
-This is where the real product logic lives:
-
-- collecting article metadata from sources
-- cleaning and normalizing article titles
-- sorting stories into categories and subcategories
-- keeping Singapore Gossip mixed between local sources
-- handling Stomp view counts as private ranking metadata
-- linking every article back to the original publisher
-- generating summaries only when requested
-- serving the public website
-
-This repo should stay private because it contains the core implementation.
+Instead of organizing stories by source, OneStopNews groups them by what they are about: top stories, Singapore news, tech, global news, war news, finance, politics, and gossip.
 
 ---
 
-## What The App Does
+## What You Can Do
 
-OneStopNews is a topic-first news aggregator.
-
-Instead of making users browse by publisher, it groups articles into sections such as:
-
-- Top Stories
-- Local News
-- Tech News
-- Global News
-- War News
-- Finance News
-- Politics News
-- Gossip News
-
-Each article shows metadata, source attribution, an optional image, an original source link, and an AI summary when requested.
-
-OneStopNews does not copy and republish full publisher articles.
+- Browse major stories by topic.
+- Narrow each topic with subcategories.
+- Search for keywords, companies, places, sources, or people.
+- Open the original publisher article with one click.
+- Request an AI summary only when you want one.
+- Read comfortably on desktop or mobile.
 
 ---
 
-## Important Privacy Boundary
+## How It Works
 
-Keep this repo private.
+OneStopNews collects public article information from news and discussion sources, then organizes the stories into topic-based feeds.
 
-Do not copy these into the public GitHub repo:
+Each article shows:
 
-- backend source code
-- source ingestion logic
-- source-specific parsing workarounds
-- fallback article seeds
-- classification rules
-- ranking rules
-- Stomp view-count handling
-- JayneStars fallback handling
-- summarization implementation
-- cached data files
-- environment variables
-- deployment configuration
-- private execution plans
-- agent instructions
+- headline
+- source
+- category and subcategory
+- published time when available
+- article image when available
+- AI summary when requested
+- link to the original article
 
-The public repo should only contain product-facing documents, screenshots, public-safe architecture, and the live site link.
+OneStopNews does not copy and republish full publisher articles. The original article remains on the publisher's website.
 
 ---
 
-## Folder Guide
+## Main Sections
 
-```text
-private-repo/
-├── server.js                         # Web server and API routes
-├── package.json                      # App scripts and Node settings
-├── public/                           # Frontend HTML, CSS, and browser JS
-├── src/
-│   ├── config/
-│   │   ├── categories.js             # Category and subcategory list
-│   │   └── sources.js                # Private source configuration
-│   └── lib/
-│       ├── classify.js               # Category and ranking logic
-│       ├── ingest.js                 # Source fetching pipeline
-│       ├── rss.js                    # RSS and HTML parsing helpers
-│       ├── store.js                  # Local article cache handling
-│       └── summarize.js              # On-demand summary logic
-├── data/
-│   └── state.json                    # Local cached article state
-├── docs/
-│   ├── MASTER_EXECUTION_PLAN.md      # Private implementation plan
-│   └── PRIVATE_REPO_CONTENTS.md      # Private repo inventory
-├── public dupes/                     # Copy of public repo docs
-└── AGENTS.md                         # Private instructions for coding agents
-```
+| Section | What You Will Find |
+|---|---|
+| Top Stories | A balanced view of major stories across categories |
+| Local News | Singapore headlines, transport, housing, and local business |
+| Tech News | Apple, AI, startups, cybersecurity, and other technology news |
+| Global News | China, US, Asia-Pacific, Europe, and other world news |
+| War News | Russia-Ukraine, Israel-Gaza, Middle East, defense, and other conflicts |
+| Finance News | Markets, earnings, personal finance, crypto, and commodities |
+| Politics News | Singapore politics, US politics, China politics, and geopolitics |
+| Gossip News | Singapore gossip, Hong Kong gossip, Korea gossip, global gossip, and internet culture |
 
 ---
 
-## Public Repo Dupes
+## Singapore Gossip
 
-The `public dupes/` folder contains copies of the public repository files:
+Singapore Gossip is designed to show a useful mix of local entertainment and social stories, including local sources such as Mothership and Stomp.
 
-```text
-public dupes/
-├── README.md
-├── Project_Requirements_Document.md
-├── TECHNICAL_ARCHITECTURE.md
-├── REPO_CONTENTS.md
-└── assets/
-```
-
-Use that folder when updating the public GitHub repo.
-
-The public repo is for presentation. This private repo is for the working app.
+When a source provides public popularity signals, OneStopNews may use them to help sort stories while keeping headlines clean and readable.
 
 ---
 
-## Run The App
+## AI Summaries
 
-Install dependencies:
+AI summaries are optional.
 
-```bash
-npm install
-```
+OneStopNews summarizes only the articles you choose, then shows a short brief and key points where available. Summaries are meant to help you decide whether to read the full article, not replace the original reporting.
 
-Start the app:
-
-```bash
-npm start
-```
-
-The app uses the hosting platform's `PORT` value in production. For local development, it falls back to port `5174`.
+For the full story, always open the original publisher link.
 
 ---
 
-## Useful Checks
+## Screenshots
 
-Run these before deploying changes:
-
-```bash
-node --check server.js
-find src -name '*.js' -print | xargs -I{} node --check {}
-node --check public/app.js
-```
-
-If source or category logic changes, also check that the relevant category counts still look right in the app.
+| Desktop | Mobile |
+|---|---|
+| ![Desktop home](assets/screenshots/desktop-home.png) | ![Mobile home](assets/screenshots/mobile-home.png) |
 
 ---
 
-## Deployment
+## Current Status
 
-Deploy this private repo as the Render web service.
+OneStopNews is an early live version.
 
-Do not deploy the public repo as the working site. The public repo does not contain the backend or ingestion logic needed to run OneStopNews.
+The site currently supports topic browsing, subcategories, article cards, search, sorting, source links, article images where available, and on-demand AI summaries.
 
-After changing ingestion, source config, ranking, or cached data behavior, restart the Render service so the live site picks up the latest code.
-
----
-
-## Current Sensitive Areas
-
-These areas need extra care when editing:
-
-- Stomp Singapore Gossip parsing and view-count sorting
-- Mothership and Stomp source mix for Singapore Gossip
-- JayneStars Hong Kong Gossip fallback handling
-- Top Stories balancing so gossip does not dominate
-- Source attribution and original article links
-- AI summary wording and disclosure
-- Article image extraction and fallback visuals
+Planned improvements include broader source coverage, better duplicate detection, richer article images, stronger mobile polish, and higher-quality summaries.
 
 ---
 
-## Product Rules
+## Project Documents
 
-- Organize news by topic, not by publisher.
-- Always show the original source.
-- Do not republish full articles.
-- Keep summaries optional and clearly labeled.
-- Keep mobile browsing first-class.
-- Treat gossip and Reddit-style content carefully.
-- Keep public documentation useful without exposing private logic.
+These documents describe the product in more detail:
+
+| Document | Purpose |
+|---|---|
+| [Project_Requirements_Document.md](Project_Requirements_Document.md) | Product requirements and scope |
+| [TECHNICAL_ARCHITECTURE.md](TECHNICAL_ARCHITECTURE.md) | High-level architecture overview |
+
+---
+
+## Content Note
+
+OneStopNews is a discovery and summarization tool. It is not the original publisher of the articles it links to.
+
+Each story includes attribution and a link to the original source.
 
 ---
 
