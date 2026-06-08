@@ -4,7 +4,6 @@
 
 Visit the live site: https://onestopnews.onrender.com/
 
-![OneStopNews desktop screenshot](assets/screenshots/desktop-home.png)
 
 OneStopNews is a simple way to scan the news without jumping between every publisher, finance page, forum, and entertainment site.
 
