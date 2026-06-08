@@ -4,7 +4,7 @@
 
 Live site: https://onestopnews.onrender.com/
 
-OneStopNews is a topic-first news aggregator that helps readers scan major stories quickly. Instead of organizing articles by publisher, it groups them by what they are about: local news, tech, global news, finance, politics, gossip, and top stories.
+OneStopNews is a topic-first news aggregator that helps readers scan major stories quickly. Instead of organizing articles by publisher, it groups them by what they are about: local news, tech, global news, war news, finance, politics, gossip, and top stories.
 
 The goal is simple: make the news easier to browse when important stories are spread across many different sources.
 
@@ -35,6 +35,7 @@ OneStopNews is designed for quick scanning first. Readers can browse by topic, s
 | **Local News** | Singapore headlines, transport, housing, and local business |
 | **Tech News** | Apple news, AI, startups, cybersecurity, and other tech |
 | **Global News** | China news, US news, Asia-Pacific, Europe, and other world news |
+| **War News** | Russia-Ukraine, Israel-Gaza, Middle East, defense, and other conflicts |
 | **Finance News** | Markets, earnings, personal finance, crypto, and commodities |
 | **Politics News** | Singapore politics, US politics, China politics, and geopolitics |
 | **Gossip News** | Singapore gossip, Korea gossip, global gossip, and internet culture |
@@ -74,6 +75,7 @@ OneStopNews is built around questions like:
 - What are the biggest stories right now?
 - What is happening in Singapore?
 - What is happening in Apple and tech?
+- What war or conflict stories are developing?
 - What is moving markets?
 - What political stories are developing?
 - What gossip or internet stories are trending?
