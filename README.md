@@ -4,30 +4,26 @@
 
 Live site: https://onestopnews.onrender.com/
 
-OneStopNews is a live, topic-first news aggregator. It pulls public RSS feeds, groups articles by what they are about, and lets readers scan the day quickly without jumping between every publisher one by one.
+OneStopNews is a topic-first news aggregator that helps readers scan major stories quickly. Instead of organizing articles by publisher, it groups them by what they are about: local news, tech, global news, finance, politics, gossip, and top stories.
 
-Instead of organizing news by source, OneStopNews organizes articles into categories such as local news, tech, global news, finance, politics, gossip, and top stories.
-
-For each article, the app shows a clean article card, a direct link to the original publisher, and an optional summary that is generated only when the user asks for it.
+The goal is simple: make the news easier to browse when important stories are spread across many different sources.
 
 ---
 
-## What Works Now
+## What OneStopNews Does
 
-This repository contains a working MVP, not just a static mockup.
+OneStopNews collects public news article information, sorts articles into clear categories, and presents them in a clean reading interface.
 
-| Feature | Status |
-|---|---|
-| Live RSS ingestion | Implemented |
-| Topic-based categories | Implemented |
-| Dropdown subcategories | Implemented |
-| Article search and sorting | Implemented |
-| Source health tracking | Implemented |
-| Original source links | Implemented |
-| On-demand summaries | Implemented with a free extractive summarizer |
-| Mobile-friendly layout | Implemented |
-| Backend API | Implemented |
-| Local JSON storage | Implemented |
+For each article, readers can see:
+
+- the article title
+- the source
+- the category and subcategory
+- the published time
+- a short summary when requested
+- a link to the original article
+
+OneStopNews is designed for quick scanning first. Readers can browse by topic, search across stories, open subcategories, and jump to the original publisher when they want the full article.
 
 ---
 
@@ -35,149 +31,54 @@ This repository contains a working MVP, not just a static mockup.
 
 | Category | Includes |
 |---|---|
-| **Top Stories** | Breaking stories, major headlines, widely relevant articles |
-| **Local News** | Singapore headlines, transport, housing, local business |
-| **Tech News** | Apple news, AI, startups, cybersecurity, other tech |
-| **Global News** | China news, US news, Asia-Pacific, Europe, other world news |
-| **Finance News** | Markets, earnings, personal finance, crypto, commodities |
-| **Politics News** | Singapore politics, US politics, China politics, geopolitics |
-| **Gossip News** | Singapore gossip, Korea gossip, global gossip, internet culture |
+| **Top Stories** | Major headlines and widely relevant stories |
+| **Local News** | Singapore headlines, transport, housing, and local business |
+| **Tech News** | Apple news, AI, startups, cybersecurity, and other tech |
+| **Global News** | China news, US news, Asia-Pacific, Europe, and other world news |
+| **Finance News** | Markets, earnings, personal finance, crypto, and commodities |
+| **Politics News** | Singapore politics, US politics, China politics, and geopolitics |
+| **Gossip News** | Singapore gossip, Korea gossip, global gossip, and internet culture |
 
 ---
 
-## How Articles Work
+## Key Features
 
-OneStopNews pulls article metadata from public feeds and stores only the information needed to display and organize the story.
+| Feature | Description |
+|---|---|
+| **Topic-first browsing** | Articles are grouped by category instead of publisher. |
+| **Dropdown subcategories** | Larger topics can be narrowed down into more specific news areas. |
+| **Search and sorting** | Readers can find stories by keyword and sort the feed. |
+| **Original source links** | Every article links back to the publisher. |
+| **On-demand summaries** | Summaries are generated only when a reader asks for them. |
+| **Mobile-friendly design** | The interface is built to work comfortably on phones and desktops. |
+| **Source visibility** | Readers can still see where each story came from. |
 
-The app stores:
+---
 
-- title
-- source name
-- original article link
-- published time
-- feed excerpt or metadata, when provided
-- category and subcategory
-- generated summary, if the user requests one
+## Content Approach
 
 OneStopNews does **not** copy and republish full articles.
 
-The original article remains on the publisher's website. The **Original Source** view gives attribution and sends the reader to the publisher.
+The app is built around article discovery, categorization, and summarization. The full article remains with the original publisher.
+
+Each story includes a direct link to the original source so readers can continue to the publisher's website for the full article.
 
 ---
 
-## AI Summaries
+## Why It Exists
 
-Summaries are generated only when a user clicks to summarize an article.
+News is often organized around publishers, but readers usually think in topics.
 
-This keeps the app cheaper to run because it does not summarize every article automatically in the background.
+OneStopNews is built around questions like:
 
-The current MVP uses a free extractive summarizer. A production version can later connect to OpenAI or another AI provider for higher-quality summaries.
+- What are the biggest stories right now?
+- What is happening in Singapore?
+- What is happening in Apple and tech?
+- What is moving markets?
+- What political stories are developing?
+- What gossip or internet stories are trending?
 
----
-
-## Project Files
-
-```text
-onestopnews-live/
-├── public/
-│   ├── index.html      # Main website page
-│   ├── styles.css      # Layout, visual design, mobile styling
-│   └── app.js          # Frontend interactions, filters, article rendering
-├── src/
-│   ├── config/
-│   │   ├── categories.js   # Topic and subcategory structure
-│   │   └── sources.js      # RSS source list
-│   └── lib/
-│       ├── classify.js     # Category matching rules
-│       ├── ingest.js       # Feed ingestion logic
-│       ├── rss.js          # RSS parser
-│       ├── store.js        # Local JSON data store
-│       └── summarize.js    # On-demand summary logic
-├── data/
-│   └── state.json      # Local article/source state
-├── server.js           # Backend server and API routes
-├── package.json        # App scripts
-└── README.md
-```
-
----
-
-## Run Locally
-
-Install Node.js first if your computer does not already have it.
-
-Then run:
-
-```bash
-npm start
-```
-
-Open:
-
-```text
-http://127.0.0.1:5174
-```
-
-If you need another port:
-
-```bash
-PORT=8080 npm start
-```
-
-To stop the local site, press:
-
-```text
-Control + C
-```
-
----
-
-## API Routes
-
-| Route | Purpose |
-|---|---|
-| `GET /api/categories` | Returns the topic and subcategory structure |
-| `GET /api/articles` | Returns articles with filters, sorting, and category counts |
-| `GET /api/articles/:id` | Returns one article |
-| `POST /api/ingest` | Pulls live articles from RSS feeds |
-| `POST /api/summarize/:id` | Generates a summary for one selected article |
-| `GET /api/source-health` | Shows feed status and ingestion information |
-
----
-
-## Deploying
-
-This app should be deployed as a **Web Service**, not as a static site.
-
-It needs a backend because it fetches live RSS feeds, serves API routes, stores article state, and generates summaries.
-
-On Render, choose:
-
-```text
-New Web Service
-```
-
-Use this start command:
-
-```bash
-npm start
-```
-
-Render provides the `PORT` automatically. The server listens on `0.0.0.0` so Render can detect the open port.
-
----
-
-## Notes For First Deploy
-
-When the app first starts, it may need a moment to pull live articles.
-
-If article counts look empty:
-
-1. Click **Refresh feeds** in the website.
-2. Wait a few seconds.
-3. Reload the page.
-
-The dropdown counts are calculated from the backend article index so they stay consistent across devices.
+The product is meant to reduce tab-hopping and make daily news scanning feel calmer, faster, and easier to follow.
 
 ---
 
@@ -188,22 +89,20 @@ The dropdown counts are calculated from the backend article index so they stay c
 - Always show where an article came from.
 - Never hide the original publisher link.
 - Do not republish full copyrighted articles.
-- Summarize only selected articles to keep costs low.
-- Treat gossip and Reddit discussions carefully.
+- Summarize only selected articles.
+- Treat gossip and discussion-based content carefully.
 - Label summaries clearly.
 - Make mobile browsing feel first-class.
 
 ---
 
-## Planned Next Steps
+## Status
 
-1. Improve source coverage and add more approved feeds
-2. Add a production database instead of local JSON storage
-3. Add optional AI provider support for better summaries
-4. Add admin tools for source and category management
-5. Add stronger deduplication across publishers
-6. Add account-free saved preferences on the device
-7. Add monitoring for broken feeds
+OneStopNews is currently an MVP.
+
+The live version already supports topic browsing, subcategories, live article listings, source links, search, sorting, and on-demand summaries.
+
+Future improvements may include broader source coverage, stronger deduplication, better personalization, and higher-quality AI summaries.
 
 ---
 
