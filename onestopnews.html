@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OneStopNews — AI News Aggregator Mockup</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,500;6..72,650&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css?v=5" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <main class="workspace">
+        <div class="site-header">
+          <div class="brand">
+            <div class="brand-mark">OSN</div>
+            <div>
+              <strong>OneStopNews</strong>
+              <span>Everything important, sorted by topic</span>
+            </div>
+          </div>
+
+          <div class="status-pills" aria-label="Feed status">
+            <span>12/14 feeds online</span>
+            <span>Updated 4 min ago</span>
+            <span>87% summarized</span>
+          </div>
+        </div>
+
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Morning Brief</p>
+            <h1>Major stories, sorted by what they are about.</h1>
+          </div>
+          <div class="top-actions">
+            <label class="search">
+              <span>Search</span>
+              <input id="searchInput" type="search" placeholder="Apple, Singapore politics, markets..." />
+            </label>
+            <button class="refresh-button" type="button">Refresh feeds</button>
+          </div>
+        </header>
+
+        <nav class="mega-nav" id="megaNav" aria-label="Topic dropdown navigation"></nav>
+
+        <section class="briefing-strip" aria-label="Briefing summary">
+          <article>
+            <span>World</span>
+            <strong>Diplomacy dominates the overnight wire.</strong>
+          </article>
+          <article>
+            <span>Markets</span>
+            <strong>Tech earnings are steering pre-market sentiment.</strong>
+          </article>
+          <article>
+            <span>Singapore</span>
+            <strong>Policy, transport, and local culture are trending.</strong>
+          </article>
+        </section>
+
+        <section class="controls-panel">
+          <div>
+            <div class="section-label">Category</div>
+            <div class="active-category" id="activeCategory">Top Stories</div>
+            <div class="result-count" id="resultCount">0 articles</div>
+          </div>
+          <div class="subcategory-wrap">
+            <label for="subcategorySelect">Subcategory</label>
+            <select id="subcategorySelect"></select>
+          </div>
+          <div class="sort-wrap">
+            <label for="sortSelect">Sort</label>
+            <select id="sortSelect">
+              <option value="latest">Latest</option>
+              <option value="impact">Highest impact</option>
+              <option value="summary">Summary ready</option>
+            </select>
+          </div>
+        </section>
+
+        <section class="content-grid">
+          <div class="lead-card" id="leadCard"></div>
+          <div class="article-grid" id="articleGrid"></div>
+        </section>
+      </main>
+
+      <aside class="detail-panel" aria-label="Selected article detail">
+        <div id="detailPanel"></div>
+      </aside>
+    </div>
+
+    <script src="./script.js?v=5"></script>
+  </body>
+</html>
